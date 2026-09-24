@@ -44,7 +44,7 @@ export default function Page(){
   const[toolsOpen,setToolsOpen]=useState(false)
   const[createOpen,setCreateOpen]=useState(false)
 
-  useEffect(()=>{fetch('/api/workspace',{cache:'no-store'}).then(async r=>{if(r.status===401){location.href='/login';return}const w=await r.json();setCompany(w.companyName||'Construction Company');setRole(w.role||'owner');setData(norm(w.data||{}));setLoaded(true)})},[])
+  useEffect(()=>{fetch('/api/workspace',{cache:'no-store'}).then(async r=>{if(r.status===401){location.href='/login';return}const w=await r.json(),next=norm(w.data||{});setCompany(w.companyName||'Construction Company');setRole(w.role||'owner');setData(next);if(typeof window!=='undefined'){const q=new URLSearchParams(window.location.search);if(q.get('open')==='invoice'){const id=Number(q.get('projectId'));const p=next.projects.find((x:any)=>Number(x.id)===id);if(p)setInvoiceSourceProject(p);setSection('Invoices');window.history.replaceState({},'',window.location.pathname)}}setLoaded(true)})},[])
   useEffect(()=>{if(!loaded||!['owner','manager'].includes(role))return;const t=setTimeout(()=>{void fetch('/api/workspace',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(r=>{if(!r.ok)console.error('Workspace save failed',r.status)}).catch(()=>console.error('Workspace save failed'))},450);return()=>clearTimeout(t)},[data,loaded,role])
 
   if(!loaded)return <div className="loading"><HardHat/><b>Loading workspace…</b></div>
@@ -80,7 +80,7 @@ export default function Page(){
     <HQAssistant section={section} go={go} data={data} role={role}/>
     <main className="compactMain">
       <div className="pageTitle"><h1>{section}</h1><p>{data.settings.businessName||company} · {role==='manager'?'Manager workspace':'Owner workspace'}</p></div>
-      {activeJob?<JobTracker project={data.projects.find((p:any)=>p.id===activeJob.id)||activeJob} data={data} setData={setData} onClose={()=>setActiveJob(null)} onCreateInvoice={(p)=>{setInvoiceSourceProject(p);go('Invoices')}}/>:
+      {activeJob?<JobTracker project={data.projects.find((p:any)=>p.id===activeJob.id)||activeJob} data={data} setData={setData} onClose={()=>setActiveJob(null)} onCreateInvoice={(p)=>{window.location.assign('/?open=invoice&projectId='+encodeURIComponent(String(p.id)))}}/>:
       section==='Contracts'?<ContractWorkspace data={data} setData={setData} ai={ai}/>:
       section==='Plans Studio'?<BlueprintLibrary data={data} setData={setData} ai={ai}/>:
       section==='Before & After'?<ProjectGallery data={data} setData={setData}/>:
