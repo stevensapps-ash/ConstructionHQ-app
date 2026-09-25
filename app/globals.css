@@ -284,3 +284,18 @@ html{-webkit-text-size-adjust:100%}body{font-size:15px;line-height:1.5}button,in
  .homePrimaryActions button small{display:block!important}
  .quickActionsHead{margin-bottom:10px!important}
 }
+
+
+/* Professional dashboard refinement */
+@media(max-width:750px){
+ body,.compactMain{background:#f3f5f7!important;color:#17212a!important}
+ .topbar{background:#101820!important;border-bottom:1px solid #26343e!important;padding:13px 16px 12px!important}
+ .topBrand b{font-size:17px!important;font-weight:750!important;letter-spacing:-.25px!important}.chqSearchInput{background:#19242c!important;border:1px solid #344651!important;border-radius:10px!important}
+ .compactMain{padding:18px 16px 32px!important}
+ .hero{background:#15232d!important;border:0!important;border-radius:14px!important;padding:22px!important;box-shadow:0 8px 24px rgba(20,31,38,.10)!important}.hero>div>span{color:#7db9df!important;font-size:9px!important}.hero h2{font-size:25px!important;line-height:1.12!important;letter-spacing:-.6px!important}.hero p{color:#c5d0d6!important}.hero button{background:#fff!important;color:#17212a!important;border-radius:9px!important;font-weight:800!important}
+ .stats{gap:10px!important;margin:14px 0 20px!important}.stat{height:104px!important;background:#fff!important;border:1px solid #e1e6ea!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(20,31,38,.04)!important}.stat span{color:#6f7d86!important}.stat strong{color:#17212a!important;font-size:25px!important}
+ .quickActions{margin:18px 0!important}.quickActionsHead h3{font-size:18px!important;color:#17212a!important;font-weight:800!important}.quickActionsHead button{color:#356b8c!important;font-size:12px!important}
+ .homePrimaryActions{gap:10px!important}.homePrimaryActions button{min-height:102px!important;background:#fff!important;color:#17212a!important;border:1px solid #dde4e8!important;border-radius:12px!important;box-shadow:0 3px 10px rgba(20,31,38,.05)!important;align-items:flex-start!important;padding:15px!important}.homePrimaryActions button svg{color:#356b8c!important;width:22px!important;height:22px!important}.homePrimaryActions button b{font-size:13px!important;text-align:left!important}.homePrimaryActions button small{font-size:10px!important;color:#78868f!important;text-align:left!important}
+ .hqBanner{background:#fff!important;color:#17212a!important;border:1px solid #dde4e8!important;border-radius:12px!important;box-shadow:0 3px 10px rgba(20,31,38,.04)!important}.hqBanner b{color:#17212a!important}.hqBanner small{color:#74828b!important}.hqBanner svg{color:#356b8c!important}.hqBanner button{border:1px solid #356b8c!important;color:#356b8c!important;background:#fff!important}
+ .dashPanel{background:#fff!important;border:1px solid #e0e6ea!important;box-shadow:0 3px 12px rgba(20,31,38,.04)!important}
+}
