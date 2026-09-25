@@ -275,3 +275,12 @@ html{-webkit-text-size-adjust:100%}body{font-size:15px;line-height:1.5}button,in
  .quickActionGrid button small{display:block!important;font-size:9px!important;color:#8ca0ac!important}
  .hqAssistant{bottom:18px!important}
 }
+
+
+/* Clean Home dashboard — only four primary actions */
+@media(max-width:750px){
+ .homePrimaryActions{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .homePrimaryActions button{min-height:96px!important}
+ .homePrimaryActions button small{display:block!important}
+ .quickActionsHead{margin-bottom:10px!important}
+}
