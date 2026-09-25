@@ -263,3 +263,15 @@ html{-webkit-text-size-adjust:100%}body{font-size:15px;line-height:1.5}button,in
  .toolMenuBackdrop .toolGroup button{min-height:50px!important;background:#16232b!important;color:#eef6fa!important;border:1px solid #243945!important;border-radius:12px!important;font-size:14px!important}
  .toolMenuBackdrop .toolGroup button.active{background:#102d42!important;border-color:#237bc0!important;color:#62baff!important}
 }
+
+
+/* Home-first mobile navigation — toolbar removed */
+@media(max-width:750px){
+ .mobileNav{display:none!important}
+ .compactMain{padding-bottom:28px!important}
+ .quickActionGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .quickActionGrid button{min-height:104px!important;padding:14px 8px!important}
+ .quickActionGrid button b{font-size:12px!important}
+ .quickActionGrid button small{display:block!important;font-size:9px!important;color:#8ca0ac!important}
+ .hqAssistant{bottom:18px!important}
+}
