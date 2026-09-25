@@ -102,15 +102,7 @@ export default function Page(){
       <footer>Construction HQ · Contractor business workspace</footer>
     </main>
 
-    <nav className="mobileNav" aria-label="Primary navigation">
-      <button className={section==='Dashboard'?'active':''} onClick={()=>go('Dashboard')}><Home/><span>Home</span></button>
-      <button className={section==='Projects'?'active':''} onClick={()=>go('Projects')}><FolderKanban/><span>Jobs</span></button>
-      <button className={section==='AI Estimates'?'active':''} onClick={()=>go('AI Estimates')}><Sparkles/><span>Estimate</span></button>
-      <button className="mobileCreate" aria-expanded={createOpen} onClick={()=>{setToolsOpen(false);setCreateOpen(v=>!v)}}><PlusCircle/><span>New</span></button>
-      <button type="button" className={section==='Invoices'?'active':''} onClick={()=>go('Invoices')}><Receipt/><span>Invoices</span></button>
-      <button type="button" className={toolsOpen?'active':''} aria-label="Open menu" aria-expanded={toolsOpen} onClick={(e)=>{e.preventDefault();e.stopPropagation();setCreateOpen(false);setToolsOpen(v=>!v)}}><Menu/><span>More</span></button>
-    </nav>
-  </div>
+    </div>
 }
 
 function CHQLogo(){return <svg className="chqLogo" viewBox="0 0 100 76" role="img" aria-label="Construction HQ logo"><defs><linearGradient id="steel" x1="0" x2="1"><stop offset="0" stopColor="#f8fbfd"/><stop offset=".5" stopColor="#aeb9c1"/><stop offset="1" stopColor="#59666f"/></linearGradient><linearGradient id="blue" x1="0" x2="1"><stop offset="0" stopColor="#34c9ff"/><stop offset=".5" stopColor="#168cff"/><stop offset="1" stopColor="#0b5fff"/></linearGradient></defs><path d="M8 44 49 10l42 34M18 38V18h12v11M68 27V14h11v21" fill="none" stroke="url(#steel)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 59c6-28 26-46 47-46 18 0 33 10 39 28" fill="none" stroke="url(#blue)" strokeWidth="3"/><text x="49" y="59" textAnchor="middle" fontFamily="Georgia,serif" fontWeight="700" fontSize="35" fill="url(#steel)" stroke="#168cff" strokeWidth=".7">HQ</text><path d="M8 65h84" stroke="url(#blue)" strokeWidth="2.5"/><rect x="45" y="25" width="6" height="6" rx="1" fill="#24b8ff"/><rect x="53" y="25" width="6" height="6" rx="1" fill="#24b8ff"/></svg>}
@@ -125,13 +117,23 @@ function Dashboard({data,go,role}:{data:AppData,go:(s:string)=>void,role:string}
     <button className="statButton" onClick={()=>go('Schedule')}><Stat label="Today's Jobs" value={String(todayJobs.length)} sub="scheduled today"/></button>
     {<button className="statButton" onClick={()=>go('Invoices')}><Stat label="Unpaid Invoices" value={String(unpaid.length)} sub={unpaid.length?money(unpaidTotal)+' outstanding':'nothing outstanding'}/></button>}
   </section>
-  <section className="quickActions"><div className="quickActionsHead"><h3>Quick Actions</h3><button onClick={()=>go('Documents')}>View all <span>›</span></button></div><div className="quickActionGrid">
-    <button onClick={()=>go('AI Estimates')}><FilePlus2/><b>New Estimate</b><small>AI powered</small></button>
-    <button onClick={()=>go('Plans Studio')}><BriefcaseBusiness/><b>Build Plans</b><small>Draw & design</small></button>
-    <button onClick={()=>go('Contracts')}><FileSignature/><b>New Contract</b><small>Templates</small></button>
-    <button onClick={()=>go('Schedule')}><CalendarDays/><b>Schedule</b><small>Manage jobs</small></button>
-    <button onClick={()=>go('Before & After')}><Upload/><b>Upload Photos</b><small>AI file sorting</small></button>
-    <button onClick={()=>go('Documents')}><FolderOpen/><b>File Cabinet</b><small>Customer files</small></button>
+  <section className="quickActions"><div className="quickActionsHead"><h3>Quick Actions</h3></div><div className="quickActionGrid">
+    <button onClick={()=>go('Projects')}><FolderKanban/><b>Jobs</b><small>Projects & active work</small></button>
+    <button onClick={()=>go('AI Estimates')}><Sparkles/><b>Estimates</b><small>Create & review</small></button>
+    <button onClick={()=>go('Invoices')}><Receipt/><b>Invoices</b><small>Create & collect</small></button>
+    <button onClick={()=>go('Customers')}><Users/><b>Customers</b><small>Customer records</small></button>
+    <button onClick={()=>go('Contact Book')}><ContactRound/><b>Contacts</b><small>Phone & email</small></button>
+    <button onClick={()=>go('Schedule')}><CalendarDays/><b>Schedule</b><small>Jobs & appointments</small></button>
+    <button onClick={()=>go('Contracts')}><FileSignature/><b>Contracts</b><small>Create & manage</small></button>
+    <button onClick={()=>go('Change Orders')}><ClipboardList/><b>Change Orders</b><small>Scope changes</small></button>
+    <button onClick={()=>go('Plans Studio')}><FileText/><b>Plans Studio</b><small>Plans & blueprints</small></button>
+    <button onClick={()=>go('Permit Center')}><ClipboardList/><b>Permits</b><small>Permit workflow</small></button>
+    <button onClick={()=>go('Receipts')}><WalletCards/><b>Receipts</b><small>Upload & organize</small></button>
+    <button onClick={()=>go('Documents')}><FolderOpen/><b>Files</b><small>Documents & templates</small></button>
+    <button onClick={()=>go('Before & After')}><Camera/><b>Photos</b><small>Before & after</small></button>
+    <button onClick={()=>go('Notes')}><NotebookPen/><b>Notes</b><small>Owner notes</small></button>
+    <button onClick={()=>go('Settings')}><Settings/><b>Settings</b><small>Business setup</small></button>
+    <button onClick={()=>go('Billing & Tokens')}><Coins/><b>Billing</b><small>Plan & tokens</small></button>
   </div></section>
   <section className="hqBanner"><div><Sparkles/><span><b>Hey HQ</b><small>Ask, find, create — by voice or text</small></span></div><button onClick={()=>document.querySelector<HTMLButtonElement>('.hqOrb')?.click()}>Start</button></section>
   {attention.length>0&&<section className="dashPanel" style={{marginBottom:18}}><div className="dashPanelHead"><div><small>ATTENTION</small><h3>Needs Attention</h3></div></div>{attention.map((x:any,i:number)=><button key={i} onClick={()=>go(x.target)} className="wideRow" style={{width:'100%',textAlign:'left',cursor:'pointer'}}><AlertCircle size={18}/><div className="grow"><b>{x.text}</b></div></button>)}</section>}
