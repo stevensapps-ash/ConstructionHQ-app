@@ -68,11 +68,11 @@ export default function Page(){
         <button type="button" className={section==='Invoices'?'active':''} onClick={(e)=>{e.preventDefault();e.stopPropagation();go('Invoices')}}><Receipt/>Invoices</button>
         <button type="button" className="toolsBtn" aria-label="Open menu" aria-expanded={toolsOpen} onClick={(e)=>{e.preventDefault();e.stopPropagation();setCreateOpen(false);setToolsOpen(v=>!v)}}><Menu/>More<ChevronDown size={14}/></button>
       </nav>
-      {toolsOpen&&<div className="toolMenu">
-        <div className="toolMenuHead"><b>Construction HQ Tools</b><button onClick={()=>setToolsOpen(false)}><X/></button></div>
-        {groups.map(g=><div className="toolGroup" key={g.label}><small>{g.label}</small><div>{g.items.map(([n,I]:any)=><button key={n} onClick={()=>go(n)} className={section===n?'active':''}><I size={17}/><span>{n}</span></button>)}</div></div>)}
-        <div className="toolGroup"><small>Account</small><div><button onClick={()=>location.href='/login'}><LogIn size={17}/>Sign in</button><button onClick={()=>location.href='/logout'}><LogOut size={17}/>Sign out</button></div></div>
-      </div>}
+      {toolsOpen&&<div className="toolMenuBackdrop" onClick={()=>setToolsOpen(false)}><div className="toolMenu" role="dialog" aria-modal="true" aria-label="Construction HQ Tools" onClick={e=>e.stopPropagation()}>
+        <div className="toolMenuHead"><b>Construction HQ Tools</b><button type="button" aria-label="Close tools menu" onClick={()=>setToolsOpen(false)}><X/></button></div>
+        {groups.map(g=><div className="toolGroup" key={g.label}><small>{g.label}</small><div>{g.items.map(([n,I]:any)=><button type="button" key={n} onClick={()=>go(n)} className={section===n?'active':''}><I size={17}/><span>{n}</span></button>)}</div></div>)}
+        <div className="toolGroup"><small>Account</small><div><button type="button" onClick={()=>location.href='/login'}><LogIn size={17}/>Sign in</button><button type="button" onClick={()=>location.href='/logout'}><LogOut size={17}/>Sign out</button></div></div>
+      </div></div>}
     </header>
 
     {createOpen&&<div className="createMenu"><div className="createMenuHead"><b>Create New</b><button type="button" onClick={()=>setCreateOpen(false)}><X size={18}/></button></div>{createItems.map(([label,target])=><button type="button" key={label} onClick={()=>go(target)}><Plus size={17}/>{label}</button>)}</div>}
